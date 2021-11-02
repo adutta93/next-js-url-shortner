@@ -10,31 +10,32 @@ const Form = () => {
     copied: false,
   });
   const [shortUrl, setShortUrl] = useState(null);
-  const [finalLink, setFinalLink] = useState("");
+  const [inputFinalLink, setInputFinalLink] = useState("");
+  const [finalLink, setFinalLink] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const response = await fetch("/api/shorter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: value }),
     });
     const data = await response.json();
-    console.log("Data from short", data);
     setshortStr({ value: data.short });
     setShortUrl(
       `${document.location.protocol}//${document.location.host}/${data.short}`
     );
-    console.log("Data short==> ", data.short);
   };
-  console.log("Short url ==> ", shortUrl);
 
   //  * FINAL LINK
   const handleSubmitFinal = async (event) => {
     event.preventDefault();
-    setFinalLink(shortUrl);
+    setFinalLink(
+      `${document.location.protocol}//${document.location.host}/${inputFinalLink}`
+    );
+    console.log(finalLink);
   };
+  console.log(finalLink);
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.submitForm}>
@@ -48,7 +49,7 @@ const Form = () => {
       {/* {{shortStr.value}} */}
       <div>
         <div className={styles.shortUrlContainer}>
-          <div className={styles.shortMsg}>This is your url short: </div>
+          <div className={styles.shortMsg}>This is your url short (Copy): </div>
           <div className={styles.shortUrl}>
             <p>{shortStr.value}</p>
             <CopyToClipboard
@@ -56,7 +57,7 @@ const Form = () => {
               onCopy={() => setshortStr({ copied: true })}
             >
               <p>
-                <i class="fi fi-rr-copy-alt"></i>
+                <i className="fi fi-rr-copy-alt"></i>
               </p>
             </CopyToClipboard>
           </div>
@@ -65,23 +66,35 @@ const Form = () => {
         <div>
           <form onSubmit={handleSubmitFinal} className={styles.submitForm}>
             <div className={styles.shortMsgForm}>
-              Pasete the short here to get your link:{" "}
+              Paste the short here to get your final link:{" "}
             </div>
             <input
-              value={finalLink}
+              value={inputFinalLink}
               placeholder="Paste your link here"
-              onChange={(event) => setFinalLink(event.target.value)}
+              onChange={(event) => setInputFinalLink(event.target.value)}
             />
             <button type="submit">Get Link</button>
           </form>
         </div>
       </div>
 
-      {/* <div>
-        <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-          {finalLink ? <div>{shortUrl}</div> : ""}
-        </a>
-      </div> */}
+      {finalLink ? (
+        <div className={styles.finalLinkDiv}>
+          <a href={finalLink} target="_blank" rel="noopener noreferrer">
+            {" "}
+            <div>{finalLink}</div>{" "}
+            <div>
+              {" "}
+              <i
+                className="fi fi-rr-arrow-right"
+                style={{ marginTop: "5px" }}
+              ></i>
+            </div>
+          </a>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
