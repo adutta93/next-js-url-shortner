@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import styles from "../styles/Home.module.css";
-// import { setUrl } from "../lib/redis";
 
 const Form = () => {
   const [value, setValue] = useState("");
@@ -13,6 +12,7 @@ const Form = () => {
   const [inputFinalLink, setInputFinalLink] = useState("");
   const [finalLink, setFinalLink] = useState(null);
 
+  //  * Shorten Link
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/shorter", {
@@ -33,9 +33,8 @@ const Form = () => {
     setFinalLink(
       `${document.location.protocol}//${document.location.host}/${inputFinalLink}`
     );
-    console.log(finalLink);
   };
-  console.log(finalLink);
+
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.submitForm}>
@@ -46,7 +45,6 @@ const Form = () => {
         />
         <button type="submit">Shorten</button>
       </form>
-      {/* {{shortStr.value}} */}
       <div>
         <div className={styles.shortUrlContainer}>
           <div className={styles.shortMsg}>This is your url short (Copy): </div>
