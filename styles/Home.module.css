@@ -42,7 +42,8 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
+  margin-bottom: 8rem;
 }
 
 .title,
@@ -113,4 +114,66 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+.submitForm input {
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+.submitForm input:focus {
+  border: 1px solid grey;
+}
+
+.submitForm input::placeholder {
+  color: rgb(201, 201, 201);
+  padding: 8px;
+  font-size: 14px;
+}
+.submitForm button {
+  padding: 5px;
+  margin-left: 1rem;
+  height: 40px;
+  width: 90px;
+  background-color: #624de3;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0px 6px 12px rgba(98, 77, 227, 0.3);
+}
+.shortUrl {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(241, 241, 241);
+  box-shadow: 0px 6px 8px rgba(186, 177, 245, 0.3);
+  padding: 0px 20px;
+  border-radius: 6px;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.shortUrl i {
+  cursor: pointer;
+}
+.shortUrlContainer {
+  margin-top: 2rem;
+}
+
+.shortMsg {
+  font-size: 14px;
+  color: rgb(179, 179, 179);
+  margin-bottom: -5px;
+}
+
+.shortMsgForm {
+  font-size: 14px;
+  color: rgb(179, 179, 179);
+  margin-bottom: 1rem;
 }
