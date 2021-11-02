@@ -45,50 +45,58 @@ const Form = () => {
         />
         <button type="submit">Shorten</button>
       </form>
-      <div>
-        <div className={styles.shortUrlContainer}>
-          <div className={styles.shortMsg}>This is your url short (Copy): </div>
-          <div className={styles.shortUrl}>
-            <p>{shortStr.value}</p>
-            <CopyToClipboard
-              text={shortStr.value}
-              onCopy={() => setshortStr({ copied: true })}
-            >
-              <p>
-                <i className="fi fi-rr-copy-alt"></i>
-              </p>
-            </CopyToClipboard>
-          </div>
-        </div>
-
+      {shortUrl ? (
         <div>
-          <form onSubmit={handleSubmitFinal} className={styles.submitForm}>
-            <div className={styles.shortMsgForm}>
-              Paste the short here to get your final link:{" "}
+          <div>
+            <div className={styles.shortUrlContainer}>
+              <div className={styles.shortMsg}>
+                This is your url short (Copy):{" "}
+              </div>
+              <div className={styles.shortUrl}>
+                <p>{shortStr.value}</p>
+                <CopyToClipboard
+                  text={shortStr.value}
+                  onCopy={() => setshortStr({ copied: true })}
+                >
+                  <p>
+                    <i className="fi fi-rr-copy-alt"></i>
+                  </p>
+                </CopyToClipboard>
+              </div>
             </div>
-            <input
-              value={inputFinalLink}
-              placeholder="Paste your link here"
-              onChange={(event) => setInputFinalLink(event.target.value)}
-            />
-            <button type="submit">Get Link</button>
-          </form>
-        </div>
-      </div>
 
-      {finalLink ? (
-        <div className={styles.finalLinkDiv}>
-          <a href={finalLink} target="_blank" rel="noopener noreferrer">
-            {" "}
-            <div>{finalLink}</div>{" "}
             <div>
-              {" "}
-              <i
-                className="fi fi-rr-arrow-right"
-                style={{ marginTop: "5px" }}
-              ></i>
+              <form onSubmit={handleSubmitFinal} className={styles.submitForm}>
+                <div className={styles.shortMsgForm}>
+                  Paste the short here to get your final link:{" "}
+                </div>
+                <input
+                  value={inputFinalLink}
+                  placeholder="Paste your link here"
+                  onChange={(event) => setInputFinalLink(event.target.value)}
+                />
+                <button type="submit">Get Link</button>
+              </form>
             </div>
-          </a>
+          </div>
+
+          {finalLink ? (
+            <div className={styles.finalLinkDiv}>
+              <a href={finalLink} target="_blank" rel="noopener noreferrer">
+                {" "}
+                <div>{finalLink}</div>{" "}
+                <div>
+                  {" "}
+                  <i
+                    className="fi fi-rr-arrow-right"
+                    style={{ marginTop: "5px" }}
+                  ></i>
+                </div>
+              </a>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""
