@@ -71,13 +71,6 @@
   max-width: 800px;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
 .submitForm input {
   width: 300px;
   height: 40px;
@@ -156,4 +149,37 @@
 }
 .finalLinkDiv .fi {
   margin-top: 1px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .submitForm button {
+    padding: 5px;
+    height: 40px;
+    width: 90px;
+    background-color: #624de3;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 6px 12px rgba(98, 77, 227, 0.3);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2px;
+  }
 }
